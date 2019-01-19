@@ -5,7 +5,7 @@
  Hardware:  Designed for ATmega328P, similar AVR devices
 
  DESCRIPTION
-       Basic routines for interfacing a HD44780U-based text lcd display
+       Basic routines for the UART protocol.
 
        Originally based on the AppNote AVR306 from Microchip,
        changed the structure to use the 2X Mode of the AVR, 
