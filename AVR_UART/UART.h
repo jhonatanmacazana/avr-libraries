@@ -26,8 +26,7 @@
 *	Used to obtain the UBRR value for the desired baud rate.
 *
 */
-#ifndef F_CPU		/* Prevent compiler error by supplying a default */
-	#warning "F_CPU not defined for <UART.h>"
+#ifndef F_CPU				/* Prevent compiler error by supplying a default */
 	#define F_CPU 8000000UL
 #endif
 
@@ -82,10 +81,10 @@ void USART_putString(char* StringPtr);
 
 /**
  @brief		Send the ASCII code of a number with the UART 
- @param		value Number to be send through UART in ASCII 
+ @param		data Number to be send through UART in ASCII 
  @return 	none
 */
-void USART_putInt(uint8_t* value);
+void USART_putNumber(uint16_t data);
 
 
 #endif /* UART_H_ */

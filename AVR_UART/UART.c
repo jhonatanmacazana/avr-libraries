@@ -22,6 +22,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdlib.h>
 #include "UART.h"
 
 
@@ -46,8 +47,6 @@ Returns:  none
 *************************************************************************/
 void USART_Init(unsigned int ubrr_val)
 {
-	uint8_t x;
-
 	/* Set the baud rate */
 	UBRR0H = (uint8_t) (ubrr_val>>8);                  
 	UBRR0L = (uint8_t) ubrr_val;
@@ -169,19 +168,19 @@ void USART_putString(char* StringPtr)
 {
 	while(*StringPtr != 0x00) 	// Last char will be null. Check if there are more characters to send
 	{				
-		USART1_Transmit(*StringPtr);	// Send 1 char at a time
+		USART_Transmit(*StringPtr);	// Send 1 char at a time
 		StringPtr++;					// Increment the index
 	}
 }
 
 /*************************************************************************
-Send Int through UART. 
-Input:    value	Number to be send
+Send Number through UART. 
+Input:    data	Number to be send
 Returns:  none
 *************************************************************************/
-void USART_putInt(uint8_t* value)
+void USART_putNumber(uint16_t data)
 {
-	char array[4];			// 4 digits of the number. Change if needed
-	itoa(value, array, 10)		// Radix for the conversion: 10
-	USART_putstring(array);		// Send the ASCII codes obtained from value
+	char array[4];				// 4 digits of the number. Change if needed
+	itoa(data, array, 10);		// Radix for the conversion: 10
+	USART_putString(array);		// Send the ASCII codes obtained from data
 }
