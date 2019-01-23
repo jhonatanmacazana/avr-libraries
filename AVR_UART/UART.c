@@ -1,5 +1,5 @@
 /*************************************************************************
- Title	:   C include file for the UART library (UART.c)
+ Title	:   UART library (UART.c)
  Author:    Jhonatan Macazana <jhonatan.macazana@utec.edu.pe> 
  Software:  AVR-GCC 4.x
  Hardware:  Designed for ATmega328P, similar AVR devices
