@@ -12,8 +12,8 @@
        Designed for the ATmega328P microcontroller.
 
        This Library uses interruptions for the UART and have buffers to 
-       store the data. The baud rate has to be on the main code with a 
-       macro definition. 
+       store the data. The baud rate to initialize the UART is MYUBRR. 
+       This value is obtain from a Macro definition.
 
  USAGE
        See the C include UART.h file for a description of each function
@@ -36,12 +36,12 @@ static volatile uint8_t USART_TxTail;
 
 
 /*
-**	local functions
+**	functions
 */
 
 /*************************************************************************
 Low-level function to initialize the UART
-Input:    ubrr_val		UBRR from macro definition
+Input:    ubrr_val		MYUBRR from macro definition
 Returns:  none
 *************************************************************************/
 void USART_Init(unsigned int ubrr_val)
@@ -165,8 +165,23 @@ Send String through UART.
 Input:    StringPtr	String to be send
 Returns:  none
 *************************************************************************/
-void USART_putstring(char* StringPtr){
-	while(*StringPtr != 0x00){				// Last char will be null. Check if there are more characters to send
-		USART1_Transmit(*StringPtr);		// Send 1 char at a time
-	StringPtr++;}
+void USART_putString(char* StringPtr)
+{
+	while(*StringPtr != 0x00) 	// Last char will be null. Check if there are more characters to send
+	{				
+		USART1_Transmit(*StringPtr);	// Send 1 char at a time
+		StringPtr++;					// Increment the index
+	}
+}
+
+/*************************************************************************
+Send Int through UART. 
+Input:    value	Number to be send
+Returns:  none
+*************************************************************************/
+void USART_putInt(uint8_t* value)
+{
+	char array[4];			// 4 digits of the number. Change if needed
+	itoa(value, array, 10)		// Radix for the conversion: 10
+	USART_putstring(array);		// Send the ASCII codes obtained from value
 }

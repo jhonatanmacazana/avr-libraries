@@ -15,11 +15,24 @@
        Designed for the ATmega328P microcontroller.
 
        This Library uses interruptions for the UART and have buffers to 
-       store the data. The baud rate has to be on the main code with a 
-       macro definition. 
+       store the data. The baud rate to initialize the UART is MYUBRR. 
+       This value is obtain from a Macro definition.
 
 *****************************************************************************/
 
+
+/**
+*	UART Clock Definitions
+*	Used to obtain the UBRR value for the desired baud rate.
+*
+*/
+#ifndef F_CPU		/* Prevent compiler error by supplying a default */
+	#warning "F_CPU not defined for <UART.h>"
+	#define F_CPU 8000000UL
+#endif
+
+#define UART_BAUD_RATE 		9600		
+#define MYUBRR 				F_CPU/8/UART_BAUD_RATE-1
 
 
 /**
@@ -65,7 +78,14 @@ void USART_Transmit(uint8_t data);
  @param		StringPtr String to be send through UART
  @return 	none
 */
-void USART_putstring(char* StringPtr);
+void USART_putString(char* StringPtr);
+
+/**
+ @brief		Send the ASCII code of a number with the UART 
+ @param		value Number to be send through UART in ASCII 
+ @return 	none
+*/
+void USART_putInt(uint8_t* value);
 
 
 #endif /* UART_H_ */
