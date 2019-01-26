@@ -4,3 +4,4 @@ A brief set of codes for the microcontroller ATmega328P or similar
 * UART
 * ADC
 * RGB Led
+* LCD - I2C Adapter
