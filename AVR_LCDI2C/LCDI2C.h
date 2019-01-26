@@ -37,7 +37,7 @@
 /**
 *	I2C-Adapter Address
 *	Choose the address of the I2C adapter. The default values 
-*	are 0x27 and 0x37. Change if needed.
+*	are 0x27 and 0x3F. Change if needed.
 *
 */
 #define LCD_Add			0x27			// Address of the LCD
@@ -45,7 +45,7 @@
 
 /**
 *	LCD Pins definition
-*	Choose the enable, reset and read/write pins of the LCD. The default 
+*	Choose the enable, register select and read/write pins of the LCD. The default 
 * 	values are 2,1,0 respectively. 
 *
 */
@@ -60,8 +60,8 @@
 *	LCD_Init() function. 
 *
 */
-#define function_set1				0x33
-#define function_set2				0x32
+#define LCD_8BIT					0x33
+#define LCD_4BIT					0x32
 #define LCD_CLR						0x01
 #define LCD_ROW1					0x80
 #define LCD_ROW2					0xC0

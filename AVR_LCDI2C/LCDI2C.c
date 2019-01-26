@@ -40,8 +40,8 @@ Returns:  none
 void LCD_Init(void)
 {
 	/* Initialize LCD */
-	sendCMD(function_set1);
-	sendCMD(function_set2);
+	sendCMD(LCD_8BIT);
+	sendCMD(LCD_4BIT);
 	sendCMD(LCD_FUNCTION_4BIT_2LINES);
 	sendCMD(LCD_DISP_ON);
 	sendCMD(LCD_CLR);
